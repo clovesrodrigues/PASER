@@ -1,3 +1,4 @@
+#include <wx/wx.h>
 #include "parser_teste.h"
 
 #include "parser_technique_registry.hpp"
