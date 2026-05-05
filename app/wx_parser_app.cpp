@@ -56,7 +56,7 @@ private:
     wxTextCtrl* result_output_ = nullptr;
 };
 
-class ParserApp final : public wxApp {
+class ParserApp : public wxApp {
 public:
     bool OnInit() override {
         auto* frame = new ParserFrame();
