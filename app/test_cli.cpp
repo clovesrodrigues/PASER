@@ -18,6 +18,7 @@ static std::string load_text(int argc, char** argv) {
     }
 
     std::cout << "Digite o texto e finalize com CTRL+D (Linux/macOS) ou CTRL+Z (Windows).\n";
+    std::cout << "Digite o texto e finalize com CTRL+D:\n";
     std::ostringstream ss;
     ss << std::cin.rdbuf();
     return ss.str();
@@ -29,6 +30,7 @@ int main(int argc, char** argv) {
         text = default_text();
         std::cout << "[INFO] Nenhum texto recebido. Usando texto padrão:\n" << text << "\n\n";
     }
+    const std::string text = load_text(argc, argv);
 
     paser::UDPipePipeline udpipe({"udpipe/portuguese-bosque-ud-2.5-191206.udpipe"});
     auto sentence = udpipe.analyze_text(text);
@@ -48,6 +50,9 @@ int main(int argc, char** argv) {
     auto techniques = paser::build_default_techniques(onnx_cfg);
 
     std::cout << "\nResumo de técnicas disponíveis: " << techniques.size() << "\n";
+    paser::OnnxModelConfig onnx_cfg{"onnx/models/context_classifier.onnx"};
+    auto techniques = paser::build_default_techniques(onnx_cfg);
+
     for (const auto& [name, technique] : techniques) {
         auto result = technique->apply(sentence);
         std::cout << "\n=== Technique: " << name << " ===\n";

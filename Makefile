@@ -26,6 +26,11 @@ LDFLAGS       :=
 # -------------------------------
 # Targets
 # -------------------------------
+CXX      := g++
+BASE_CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -pedantic -Iinclude
+WX_CXXFLAGS   := $(BASE_CXXFLAGS) -Iui
+LDFLAGS  :=
+
 SRC      := $(wildcard src/*.cpp)
 OBJ      := $(SRC:.cpp=.o)
 BIN      := parser_cli
@@ -66,3 +71,8 @@ help:
 
 clean:
 	rm -f $(OBJ) app/test_cli.o $(BIN) $(BIN).exe $(WX_BIN) $(WX_BIN).exe
+wx:
+	$(CXX) $(WX_CXXFLAGS) $(SRC) ui/parser_teste.cpp app/wx_parser_app.cpp -o $(WX_BIN) `wx-config --cxxflags --libs`
+
+clean:
+	rm -f $(OBJ) app/test_cli.o $(BIN) $(WX_BIN)
