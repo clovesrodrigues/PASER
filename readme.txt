@@ -350,3 +350,7 @@ Se o `.exe` abrir e fechar sem saída:
 Script rápido para Windows (PowerShell):
 - `tools/reset_windows_build.ps1`
 - Função: limpar artefatos, validar conflito em `Makefile`/`udpipe_pipeline.cpp`, compilar e rodar teste do CLI.
+
+Reparo automático (Windows PowerShell):
+- `tools/repair_local_conflicts.ps1`
+- Restaura `Makefile` e `src/udpipe_pipeline.cpp` limpos (sem duplicações/conflitos), compila e roda teste.
